@@ -13,11 +13,11 @@ import SKKP from "@/views/SKKP/Main.vue";
 
 const routes = [
   {
-    path: "/",
+    path: "/abadan-land-arrangement/",
     component: TopMenu,
     children: [
       {
-        path: "/",
+        path: "/abadan-land-arrangement/",
         name: "top-menu-dashboard",
         component: Dashboard,
         meta: { authorize: [] },
@@ -43,7 +43,7 @@ const routes = [
     ],
   },
   {
-    path: "/side-menu",
+    path: "/abadan-land-arrangement/side-menu",
     component: SideMenu,
     children: [
       {
@@ -73,7 +73,7 @@ const routes = [
     ],
   },
   {
-    path: "/simple-menu",
+    path: "/abadan-land-arrangement/simple-menu",
     component: SimpleMenu,
     children: [
       {
@@ -103,22 +103,22 @@ const routes = [
     ],
   },
   {
-    path: "/login",
+    path: "/abadan-land-arrangement/login",
     name: "login",
     component: Login,
   },
   {
-    path: "/syarat&ketentuan",
+    path: "/abadan-land-arrangement/syarat&ketentuan",
     name: "term-page",
     component: SKKP,
   },
   {
-    path: "/error-page",
+    path: "/abadan-land-arrangement/error-page",
     name: "error-page",
     component: ErrorPage,
   },
   {
-    path: "/:pathMatch(.*)*",
+    path: "/abadan-land-arrangement/:pathMatch(.*)*",
     component: ErrorPage,
   },
 ];
@@ -141,11 +141,11 @@ router.beforeEach((to, from, next) => {
   if (authorize) {
     if (authRequired && !auth.user) {
       auth.returnUrl = to.fullPath;
-      return next({ path: "/login" });
+      return next({ path: "/abadan-land-arrangement/login" });
     }
     if (authorize.length && !authorize.includes(currentUser.role)) {
       alert("Role Akun Anda, Tidak Bisa Mengakses Halaman ini !");
-      return next({ path: "/" });
+      return next({ path: "/abadan-land-arrangement/" });
     }
   }
   next();
