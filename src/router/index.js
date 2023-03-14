@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/stores/auth";
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import SideMenu from "@/layouts/side-menu/Main.vue";
 import SimpleMenu from "@/layouts/simple-menu/Main.vue";
 import TopMenu from "@/layouts/top-menu/Main.vue";
@@ -13,11 +13,11 @@ import SKKP from "@/views/SKKP/Main.vue";
 
 const routes = [
   {
-    path: "#/",
+    path: "/",
     component: TopMenu,
     children: [
       {
-        path: "#/",
+        path: "/",
         name: "top-menu-dashboard",
         component: Dashboard,
         meta: { authorize: [] },
@@ -43,7 +43,7 @@ const routes = [
     ],
   },
   {
-    path: "#/side-menu",
+    path: "/side-menu",
     component: SideMenu,
     children: [
       {
@@ -73,7 +73,7 @@ const routes = [
     ],
   },
   {
-    path: "#/simple-menu",
+    path: "/simple-menu",
     component: SimpleMenu,
     children: [
       {
@@ -103,30 +103,29 @@ const routes = [
     ],
   },
   {
-    path: "#/login",
+    path: "/login",
     name: "login",
     component: Login,
   },
   {
-    path: "#/syarat&ketentuan",
+    path: "/syarat&ketentuan",
     name: "term-page",
     component: SKKP,
   },
   {
-    path: "#/error-page",
+    path: "/error-page",
     name: "error-page",
     component: ErrorPage,
   },
   {
-    path: "#/:pathMatch(.*)*",
+    path: "/:pathMatch(.*)*",
     component: ErrorPage,
   },
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory("/abadan-land-arrangement/"),
   routes,
-  base: "/abadan-land-arrangement/",
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { left: 0, top: 0 };
   },
@@ -141,11 +140,11 @@ router.beforeEach((to, from, next) => {
   if (authorize) {
     if (authRequired && !auth.user) {
       auth.returnUrl = to.fullPath;
-      return next({ path: "#/login" });
+      return next({ path: "/login" });
     }
     if (authorize.length && !authorize.includes(currentUser.role)) {
       alert("Role Akun Anda, Tidak Bisa Mengakses Halaman ini !");
-      return next({ path: "#/" });
+      return next({ path: "/" });
     }
   }
   next();
