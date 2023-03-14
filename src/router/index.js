@@ -39,8 +39,7 @@ const routes = [
         name: "top-menu-perkiraan-akutansi",
         component: PerkiraanAKutansi,
         meta: { authorize: [] },
-      }
-
+      },
     ],
   },
   {
@@ -70,7 +69,7 @@ const routes = [
         name: "side-menu-perkiraan-akutansi",
         component: PerkiraanAKutansi,
         meta: { authorize: [] },
-      }
+      },
     ],
   },
   {
@@ -93,14 +92,14 @@ const routes = [
         path: "jurnal-transaksi",
         name: "simple-menu-jurnal-transaksi",
         component: Jurnal,
-        meta: { authorize: [] }
+        meta: { authorize: [] },
       },
       {
         path: "perkiraan-akutansi",
         name: "simple-menu-perkiraan-akutansi",
         component: PerkiraanAKutansi,
         meta: { authorize: [] },
-      }
+      },
     ],
   },
   {
@@ -127,6 +126,7 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  base: "/abadan-land-arrangement/",
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { left: 0, top: 0 };
   },
