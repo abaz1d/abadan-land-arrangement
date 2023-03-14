@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/stores/auth";
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import SideMenu from "@/layouts/side-menu/Main.vue";
 import SimpleMenu from "@/layouts/simple-menu/Main.vue";
 import TopMenu from "@/layouts/top-menu/Main.vue";
@@ -13,11 +13,11 @@ import SKKP from "@/views/SKKP/Main.vue";
 
 const routes = [
   {
-    path: "/abadan-land-arrangement/",
+    path: "#/",
     component: TopMenu,
     children: [
       {
-        path: "/abadan-land-arrangement/",
+        path: "#/",
         name: "top-menu-dashboard",
         component: Dashboard,
         meta: { authorize: [] },
@@ -43,7 +43,7 @@ const routes = [
     ],
   },
   {
-    path: "/abadan-land-arrangement/side-menu",
+    path: "#/side-menu",
     component: SideMenu,
     children: [
       {
@@ -73,7 +73,7 @@ const routes = [
     ],
   },
   {
-    path: "/abadan-land-arrangement/simple-menu",
+    path: "#/simple-menu",
     component: SimpleMenu,
     children: [
       {
@@ -103,28 +103,28 @@ const routes = [
     ],
   },
   {
-    path: "/abadan-land-arrangement/login",
+    path: "#/login",
     name: "login",
     component: Login,
   },
   {
-    path: "/abadan-land-arrangement/syarat&ketentuan",
+    path: "#/syarat&ketentuan",
     name: "term-page",
     component: SKKP,
   },
   {
-    path: "/abadan-land-arrangement/error-page",
+    path: "#/error-page",
     name: "error-page",
     component: ErrorPage,
   },
   {
-    path: "/abadan-land-arrangement/:pathMatch(.*)*",
+    path: "#/:pathMatch(.*)*",
     component: ErrorPage,
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
   base: "/abadan-land-arrangement/",
   scrollBehavior(to, from, savedPosition) {
@@ -141,11 +141,11 @@ router.beforeEach((to, from, next) => {
   if (authorize) {
     if (authRequired && !auth.user) {
       auth.returnUrl = to.fullPath;
-      return next({ path: "/abadan-land-arrangement/login" });
+      return next({ path: "#/login" });
     }
     if (authorize.length && !authorize.includes(currentUser.role)) {
       alert("Role Akun Anda, Tidak Bisa Mengakses Halaman ini !");
-      return next({ path: "/abadan-land-arrangement/" });
+      return next({ path: "#/" });
     }
   }
   next();
